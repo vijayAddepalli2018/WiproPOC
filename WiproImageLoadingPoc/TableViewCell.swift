@@ -32,7 +32,7 @@ class TableViewCell: UITableViewCell {
         contentView.addSubview(countryImageView)
         countryImageView.widthAnchor.constraint(equalToConstant:40).isActive = true
         countryImageView.heightAnchor.constraint(equalToConstant:40).isActive = true
-        countryImageView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor , constant:16).isActive = true
+        countryImageView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor , constant:5).isActive = true
         countryImageView.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         
         
