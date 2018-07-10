@@ -25,15 +25,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     /// Set up contraints for TableView to work in any device
     fileprivate func setUpContraintsForTableView() {
+         let marginGuide = view.layoutMarginsGuide
         countryContactsTableView.translatesAutoresizingMaskIntoConstraints = false
         countryContactsTableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
         countryContactsTableView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
         countryContactsTableView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
         countryContactsTableView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
-        countryContactsTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
-        countryContactsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        countryContactsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        countryContactsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        countryContactsTableView.topAnchor.constraint(equalTo:marginGuide.topAnchor).isActive = true
+        countryContactsTableView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+        countryContactsTableView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        countryContactsTableView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
     }
     
     /// Initial set up table view
@@ -47,7 +48,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     fileprivate func dragToRefresh() {
         self.refreshCtrl = UIRefreshControl()
         self.refreshCtrl.addTarget(self, action: #selector(ViewController.fetchTableViewData), for: .valueChanged)
-        self.countryContactsTableView.refreshControl = self.refreshCtrl
+        if #available(iOS 10.0, *) {
+            self.countryContactsTableView.refreshControl = self.refreshCtrl
+        } else {
+            countryContactsTableView.addSubview(self.refreshCtrl)
+        }
     }
     
     /// Calls network manager genric function to pull data from web
@@ -68,7 +73,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 DispatchQueue.main.async {
                     self.title = unWrappedCountry.title
                     self.countryContactsTableView.reloadData()
-                    self.countryContactsTableView.refreshControl?.endRefreshing()
+                    if #available(iOS 10.0, *) {
+                        self.countryContactsTableView.refreshControl?.endRefreshing()
+                    } else {
+                        self.refreshCtrl.endRefreshing()
+                    }
                 }
             } else {
                 DispatchQueue.main.async {
