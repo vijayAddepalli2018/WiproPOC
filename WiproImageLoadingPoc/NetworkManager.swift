@@ -16,11 +16,16 @@ struct Row: Codable {
 }
 
 class NetworkManager: NSObject {
-    
+    //Singelton Object
     static let sharedInstance = NetworkManager()
     
     private override init() {}
     
+    /// This genric function can take any url and decode to any object and returns
+    ///
+    /// - Parameters:
+    ///   - urlString: Service API url
+    ///   - completion: Retuns genric object and completion success = true if parsed successfully
     public func fetchGenericData<T: Codable>(urlString: String, completion: @escaping (T?, Bool) -> ()) {
         let url = URL(string: urlString)
         guard let wrappedUrl = url else {

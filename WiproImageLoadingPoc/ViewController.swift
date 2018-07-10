@@ -19,10 +19,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpContraintsForTableView()
         initiliseTableView()
         dragToRefresh()
-        self.refreshTableView()
+        self.fetchTableViewData()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    /// Set up contraints for TableView to work in any device
     fileprivate func setUpContraintsForTableView() {
         contactsTableView.translatesAutoresizingMaskIntoConstraints = false
         contactsTableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
@@ -35,19 +36,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         contactsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    /// Initial set up table view
     fileprivate func initiliseTableView() {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
         contactsTableView.register(TableViewCell.self, forCellReuseIdentifier: "contactCell")
     }
     
+    /// When pull down in tableview then we make service call to refersh
     fileprivate func dragToRefresh() {
         self.refreshCtrl = UIRefreshControl()
-        self.refreshCtrl.addTarget(self, action: #selector(ViewController.refreshTableView), for: .valueChanged)
+        self.refreshCtrl.addTarget(self, action: #selector(ViewController.fetchTableViewData), for: .valueChanged)
         self.contactsTableView.refreshControl = self.refreshCtrl
     }
     
-    @objc func refreshTableView () {
+    /// Calls network manager genric function to pull data from web
+    @objc func fetchTableViewData () {
         
         NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (country: Welcome?, sucess) in
             if sucess {
@@ -87,6 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let imageUrl = URL.init(string: tableData[indexPath.row].imageHref ?? "")
         cell.countryImageView.sd_setShowActivityIndicatorView(true)
         cell.countryImageView.sd_setIndicatorStyle(.gray)
+        // Used SD web image for async load and cache
         cell.countryImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage.init(named: "placeholder"), options: [.progressiveDownload])
         return cell
     }
@@ -101,6 +106,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    /// Display alert if service call retunr false in completion block
     func showAlert() {
         let alert = UIAlertController(title: "Network Alert", message: "There was an error processing your request", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
