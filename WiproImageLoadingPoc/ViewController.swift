@@ -59,7 +59,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func fetchTableViewData () {
         
         if ConnectivityManager.isConnectedToInternet {
-            NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (country: Welcome?, sucess) in
+            NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { [weak self] (country: Welcome?, sucess) in
+                guard let strongSelf = self else {
+                    return
+                }
                 if sucess {
                     guard let unWrappedCountry = country else {
                         return
@@ -70,24 +73,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         }
                         return false
                     })
-                    self.tableData = cleanedData
+                    strongSelf.tableData = cleanedData
                     DispatchQueue.main.async {
-                        self.title = unWrappedCountry.title
-                        self.countryContactsTableView.reloadData()
+                        strongSelf.title = unWrappedCountry.title
+                        strongSelf.countryContactsTableView.reloadData()
                         if #available(iOS 10.0, *) {
-                            self.countryContactsTableView.refreshControl?.endRefreshing()
+                            strongSelf.countryContactsTableView.refreshControl?.endRefreshing()
                         } else {
-                            self.refreshCtrl.endRefreshing()
+                            strongSelf.refreshCtrl.endRefreshing()
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.showAlert(message: "There was an error processing your request")
+                        strongSelf.showAlert(message: "There was an error processing your request")
                     }
                 }
             }
         } else {
-            self.showAlert(message: "There was no internet connection,Please turn your mobile data")
+            self.showAlert(message: "There was an error processing your request")
         }
         
     }

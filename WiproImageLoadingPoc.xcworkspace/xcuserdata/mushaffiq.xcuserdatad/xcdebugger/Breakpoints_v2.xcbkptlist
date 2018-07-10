@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WiproImageLoadingPoc/ViewController.swift"
-            timestampString = "552912629.697394"
+            timestampString = "552913281.973066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "fetchTableViewData()"
             landmarkType = "7">
          </BreakpointContent>
