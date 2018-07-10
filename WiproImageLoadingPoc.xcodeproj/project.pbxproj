@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		5E3583CB20F3AB3A00E95924 /* WiproImageLoadingPocTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3583CA20F3AB3A00E95924 /* WiproImageLoadingPocTests.swift */; };
 		5E3583D620F3B57F00E95924 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3583D520F3B57F00E95924 /* TableViewCell.swift */; };
 		5E3583D820F3B98300E95924 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3583D720F3B98300E95924 /* NetworkManager.swift */; };
+		5E64973420F4C5B400C33FC7 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E64973320F4C5B400C33FC7 /* ConnectivityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		5E3583D520F3B57F00E95924 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		5E3583D720F3B98300E95924 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5E3583D920F3B9A200E95924 /* WiproImageLoadingPoc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WiproImageLoadingPoc-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E64973320F4C5B400C33FC7 /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		7D93A31E572AA23493336592 /* Pods-WiproImageLoadingPoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiproImageLoadingPoc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WiproImageLoadingPoc/Pods-WiproImageLoadingPoc.debug.xcconfig"; sourceTree = "<group>"; };
 		9B18EB65C5DEFBBA6DE8BEC5 /* Pods_WiproImageLoadingPoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WiproImageLoadingPoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE91EBD3B4B1AC0DD773614E /* Pods-WiproImageLoadingPocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiproImageLoadingPocTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WiproImageLoadingPocTests/Pods-WiproImageLoadingPocTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		5E3583B420F3AB3900E95924 /* WiproImageLoadingPoc */ = {
 			isa = PBXGroup;
 			children = (
+				5E64973320F4C5B400C33FC7 /* ConnectivityManager.swift */,
 				5E3583D720F3B98300E95924 /* NetworkManager.swift */,
 				5E3583B520F3AB3900E95924 /* AppDelegate.swift */,
 				5E3583B720F3AB3900E95924 /* ViewController.swift */,
@@ -187,15 +190,17 @@
 					5E3583B120F3AB3900E95924 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						ProvisioningStyle = Automatic;
 					};
 					5E3583C520F3AB3A00E95924 = {
 						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 5E3583B120F3AB3900E95924;
 					};
 				};
 			};
 			buildConfigurationList = 5E3583AD20F3AB3900E95924 /* Build configuration list for PBXProject "WiproImageLoadingPoc" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,10 +263,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WiproImageLoadingPoc/Pods-WiproImageLoadingPoc-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +304,7 @@
 				5E3583D820F3B98300E95924 /* NetworkManager.swift in Sources */,
 				5E3583D620F3B57F00E95924 /* TableViewCell.swift in Sources */,
 				5E3583B820F3AB3900E95924 /* ViewController.swift in Sources */,
+				5E64973420F4C5B400C33FC7 /* ConnectivityManager.swift in Sources */,
 				5E3583B620F3AB3900E95924 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,8 +447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -454,10 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WiproImageLoadingPoc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = as.WiproImageLoadingPoc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WiproImageLoadingPoc-Bridging-Header.h";
@@ -476,10 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WiproImageLoadingPoc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = as.WiproImageLoadingPoc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WiproImageLoadingPoc-Bridging-Header.h";
@@ -496,11 +497,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WiproImageLoadingPocTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = as.WiproImageLoadingPocTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -517,11 +514,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WiproImageLoadingPocTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = as.WiproImageLoadingPocTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

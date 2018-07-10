@@ -58,33 +58,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     /// Calls network manager genric function to pull data from web
     @objc func fetchTableViewData () {
         
-        NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (country: Welcome?, sucess) in
-            if sucess {
-                guard let unWrappedCountry = country else {
-                    return
-                }
-                let cleanedData = unWrappedCountry.rows.filter({ (row) -> Bool in
-                    if row.description != nil && row.title != nil {
-                        return true
+        if ConnectivityManager.isConnectedToInternet {
+            NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (country: Welcome?, sucess) in
+                if sucess {
+                    guard let unWrappedCountry = country else {
+                        return
                     }
-                    return false
-                })
-                self.tableData = cleanedData
-                DispatchQueue.main.async {
-                    self.title = unWrappedCountry.title
-                    self.countryContactsTableView.reloadData()
-                    if #available(iOS 10.0, *) {
-                        self.countryContactsTableView.refreshControl?.endRefreshing()
-                    } else {
-                        self.refreshCtrl.endRefreshing()
+                    let cleanedData = unWrappedCountry.rows.filter({ (row) -> Bool in
+                        if row.description != nil && row.title != nil {
+                            return true
+                        }
+                        return false
+                    })
+                    self.tableData = cleanedData
+                    DispatchQueue.main.async {
+                        self.title = unWrappedCountry.title
+                        self.countryContactsTableView.reloadData()
+                        if #available(iOS 10.0, *) {
+                            self.countryContactsTableView.refreshControl?.endRefreshing()
+                        } else {
+                            self.refreshCtrl.endRefreshing()
+                        }
                     }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.showAlert()
+                } else {
+                    DispatchQueue.main.async {
+                        self.showAlert(message: "There was an error processing your request")
+                    }
                 }
             }
+        } else {
+            self.showAlert(message: "There was no internet connection,Please turn your mobile data")
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,8 +121,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     /// Display alert if service call retunr false in completion block
-    func showAlert() {
-        let alert = UIAlertController(title: "Network Alert", message: "There was an error processing your request", preferredStyle: UIAlertControllerStyle.alert)
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
