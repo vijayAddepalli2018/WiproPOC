@@ -39,7 +39,9 @@ class WiproImageLoadingPocTests: XCTestCase {
             }
             
         waitForExpectations(timeout: 10) { (error) in
-            
+            if error != nil {
+                XCTFail()
+            }
         }
     }
     
