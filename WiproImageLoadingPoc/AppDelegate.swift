@@ -1,12 +1,11 @@
 //
 //  AppDelegate.swift
 //  WiproImageLoadingPoc
-//
-//  Created by Mushaffiq on 7/9/18.
 //  Copyright © 2018 Vijay. All rights reserved.
 //
 
 import UIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.backgroundColor = UIColor.white
+        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+         window!.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }
