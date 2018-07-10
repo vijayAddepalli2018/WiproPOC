@@ -26,6 +26,23 @@ class WiproImageLoadingPocTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
+    /// Fails test case if url was empty
+    func testDownloadData() {
+        let downloadExpectation =  expectation(description: "Successfully Downloaded")
+      
+            NetworkManager.sharedInstance.fetchGenericData(urlString: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (countryName: Welcome?, sucess) in
+                if sucess && countryName != nil {
+                downloadExpectation.fulfill()
+                } else {
+                    XCTFail()
+                }
+            }
+            
+        waitForExpectations(timeout: 10) { (error) in
+            
+        }
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
