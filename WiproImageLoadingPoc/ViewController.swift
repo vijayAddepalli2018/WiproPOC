@@ -8,14 +8,14 @@ import UIKit
 import SDWebImage
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let contactsTableView = UITableView()
+    let countryContactsTableView = UITableView()
     var refreshCtrl: UIRefreshControl!
     var tableData: [Row] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(contactsTableView)
+        view.addSubview(countryContactsTableView)
         setUpContraintsForTableView()
         initiliseTableView()
         dragToRefresh()
@@ -25,29 +25,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     /// Set up contraints for TableView to work in any device
     fileprivate func setUpContraintsForTableView() {
-        contactsTableView.translatesAutoresizingMaskIntoConstraints = false
-        contactsTableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
-        contactsTableView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
-        contactsTableView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
-        contactsTableView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
-        contactsTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
-        contactsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        contactsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        contactsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        countryContactsTableView.translatesAutoresizingMaskIntoConstraints = false
+        countryContactsTableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
+        countryContactsTableView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
+        countryContactsTableView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
+        countryContactsTableView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
+        countryContactsTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
+        countryContactsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        countryContactsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        countryContactsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     /// Initial set up table view
     fileprivate func initiliseTableView() {
-        contactsTableView.delegate = self
-        contactsTableView.dataSource = self
-        contactsTableView.register(TableViewCell.self, forCellReuseIdentifier: "contactCell")
+        countryContactsTableView.delegate = self
+        countryContactsTableView.dataSource = self
+        countryContactsTableView.register(TableViewCell.self, forCellReuseIdentifier: "contactCell")
     }
     
     /// When pull down in tableview then we make service call to refersh
     fileprivate func dragToRefresh() {
         self.refreshCtrl = UIRefreshControl()
         self.refreshCtrl.addTarget(self, action: #selector(ViewController.fetchTableViewData), for: .valueChanged)
-        self.contactsTableView.refreshControl = self.refreshCtrl
+        self.countryContactsTableView.refreshControl = self.refreshCtrl
     }
     
     /// Calls network manager genric function to pull data from web
@@ -67,8 +67,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.tableData = cleanedData
                 DispatchQueue.main.async {
                     self.title = unWrappedCountry.title
-                    self.contactsTableView.reloadData()
-                    self.contactsTableView.refreshControl?.endRefreshing()
+                    self.countryContactsTableView.reloadData()
+                    self.countryContactsTableView.refreshControl?.endRefreshing()
                 }
             } else {
                 DispatchQueue.main.async {
