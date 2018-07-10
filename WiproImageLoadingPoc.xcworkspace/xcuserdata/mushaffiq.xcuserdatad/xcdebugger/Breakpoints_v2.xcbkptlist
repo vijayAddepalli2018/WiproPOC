@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WiproImageLoadingPoc/ViewController.swift"
-            timestampString = "552913281.973066"
+            timestampString = "552917144.670367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -38,13 +38,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WiproImageLoadingPocTests/WiproImageLoadingPocTests.swift"
-            timestampString = "552900027.70566"
+            timestampString = "552917144.6704251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "testDownloadData()"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "testCanDownloadData()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WiproImageLoadingPocTests.WiproImageLoadingPocTests.testCanDownloadData() -&gt; ()"
+                  moduleName = "WiproImageLoadingPocTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mushaffiq/Documents/WiproImageLoadingPoc/WiproImageLoadingPocTests/WiproImageLoadingPocTests.swift"
+                  timestampString = "552917072.748793"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in WiproImageLoadingPocTests.WiproImageLoadingPocTests.testCanDownloadData() -&gt; ()"
+                  moduleName = "WiproImageLoadingPocTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mushaffiq/Documents/WiproImageLoadingPoc/WiproImageLoadingPocTests/WiproImageLoadingPocTests.swift"
+                  timestampString = "552917072.750659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
